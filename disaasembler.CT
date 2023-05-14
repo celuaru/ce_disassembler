@@ -1,0 +1,2245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="24">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>224</ID>
+      <Description>"Health"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : xrEngine.exe
+  Version: 
+  Date   : 2017-01-23
+  Author : MasterGH
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+aobscanmodule(INJECT_HEALTH,xrGame.dll,F3 0F 10 40 04 56 F3) // should be unique
+alloc(newmem,$1000)
+
+newmem:
+
+code:
+  mov [eax+04], (float)1.0
+  movss xmm0,[eax+04]
+  jmp return
+
+INJECT_HEALTH:
+  jmp newmem
+return:
+registersymbol(INJECT_HEALTH)
+
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+INJECT_HEALTH:
+  db F3 0F 10 40 04
+
+unregistersymbol(INJECT_HEALTH)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "xrGame.dll"+4574AC
+
+"xrGame.dll"+457498: C2 08 00                    -  ret 0008
+"xrGame.dll"+45749B: CC                          -  int 3 
+"xrGame.dll"+45749C: CC                          -  int 3 
+"xrGame.dll"+45749D: CC                          -  int 3 
+"xrGame.dll"+45749E: CC                          -  int 3 
+"xrGame.dll"+45749F: CC                          -  int 3 
+"xrGame.dll"+4574A0: 51                          -  push ecx
+"xrGame.dll"+4574A1: 53                          -  push ebx
+"xrGame.dll"+4574A2: 8B 5C 24 0C                 -  mov ebx,[esp+0C]
+"xrGame.dll"+4574A6: 8B 83 00 02 00 00           -  mov eax,[ebx+00000200]
+// ---------- INJECTING HERE ----------
+"xrGame.dll"+4574AC: F3 0F 10 40 04              -  movss xmm0,[eax+04]
+// ---------- DONE INJECTING  ----------
+"xrGame.dll"+4574B1: 56                          -  push esi
+"xrGame.dll"+4574B2: F3 0F 11 44 24 10           -  movss [esp+10],xmm0
+"xrGame.dll"+4574B8: F3 0F 59 05 A4 DA 5A 07     -  mulss xmm0,[xrGame.dll+59DAA4]
+"xrGame.dll"+4574C0: F3 0F 11 44 24 08           -  movss [esp+08],xmm0
+"xrGame.dll"+4574C6: 8B 74 24 08                 -  mov esi,[esp+08]
+"xrGame.dll"+4574CA: 8B D6                       -  mov edx,esi
+"xrGame.dll"+4574CC: C1 FA 17                    -  sar edx,17
+"xrGame.dll"+4574CF: 81 E2 FF 00 00 00           -  and edx,000000FF
+"xrGame.dll"+4574D5: 57                          -  push edi
+"xrGame.dll"+4574D6: 8B F9                       -  mov edi,ecx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>240</ID>
+      <Description>"Stamina"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : xrEngine.exe
+  Version: 
+  Date   : 2017-01-27
+  Author : ������
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+
+ 
+ 
+aobscanmodule(INJECT_STAMINA,xrGame.dll,F3 0F 10 40 54 F3 0F 59 05) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov [eax+54], (float)1
+code:
+  movss xmm0,[eax+54]
+  jmp return
+
+INJECT_STAMINA:
+  jmp newmem
+return:
+registersymbol(INJECT_STAMINA)
+
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+INJECT_STAMINA:
+  db F3 0F 10 40 54
+
+unregistersymbol(INJECT_STAMINA)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "xrGame.dll"+45757B
+
+"xrGame.dll"+457550: DD D8                    -  fstp st(0)
+"xrGame.dll"+457552: 76 21                    -  jna xrGame.dll+457575
+"xrGame.dll"+457554: 8B 87 AC 00 00 00        -  mov eax,[edi+000000AC]
+"xrGame.dll"+45755A: F3 0F 10 44 24 14        -  movss xmm0,[esp+14]
+"xrGame.dll"+457560: 8D 88 0C 01 00 00        -  lea ecx,[eax+0000010C]
+"xrGame.dll"+457566: F3 0F 11 87 B8 00 00 00  -  movss [edi+000000B8],xmm0
+"xrGame.dll"+45756E: 8B 01                    -  mov eax,[ecx]
+"xrGame.dll"+457570: 8B 50 04                 -  mov edx,[eax+04]
+"xrGame.dll"+457573: FF D2                    -  call edx
+"xrGame.dll"+457575: 8B 83 7C 09 00 00        -  mov eax,[ebx+0000097C]
+// ---------- INJECTING HERE ----------
+"xrGame.dll"+45757B: F3 0F 10 40 54           -  movss xmm0,[eax+54]
+// ---------- DONE INJECTING  ----------
+"xrGame.dll"+457580: F3 0F 59 05 A4 DA 54 07  -  mulss xmm0,[xrGame.dll+59DAA4]
+"xrGame.dll"+457588: F3 0F 11 44 24 14        -  movss [esp+14],xmm0
+"xrGame.dll"+45758E: 8B 74 24 14              -  mov esi,[esp+14]
+"xrGame.dll"+457592: 8B D6                    -  mov edx,esi
+"xrGame.dll"+457594: C1 FA 17                 -  sar edx,17
+"xrGame.dll"+457597: 81 E2 FF 00 00 00        -  and edx,000000FF
+"xrGame.dll"+45759D: B9 9E 00 00 00           -  mov ecx,0000009E
+"xrGame.dll"+4575A2: 2B CA                    -  sub ecx,edx
+"xrGame.dll"+4575A4: 8B D6                    -  mov edx,esi
+"xrGame.dll"+4575A6: 81 CA 00 00 80 FF        -  or edx,FF800000
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Code :cmp [esi+00000358],eax</Description>
+      <Address>07F8FE69</Address>
+      <ModuleName>xrGame.dll</ModuleName>
+      <ModuleNameOffset>2CFE69</ModuleNameOffset>
+      <Before>
+        <Byte>85</Byte>
+        <Byte>B7</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>39</Byte>
+        <Byte>86</Byte>
+        <Byte>58</Byte>
+        <Byte>03</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>0F</Byte>
+        <Byte>84</Byte>
+        <Byte>97</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <LuaScript>
+	maskHintHits1 = 'Hits on start: %s\n\rBranchhits/s: %s\n\rHits/s: %s\n\rBranches: %s'
+	maskHintHits2 = 'Hits: %s'
+  
+  -- Число в битовую таблицу
+	function ToBits(num, bits)
+		local t = {}
+		for b = 8,1,-1 do
+			rest = math.fmod(num,2)
+			t[b] = math.floor(rest)
+			num = (num-rest)/2
+		end
+		if num == 0 then return t else return {'Not enough bits to represent this number'}end
+	end
+
+	-- Возвращает таблицу matrixColorsTable
+	function GetMatrixColorsTable()
+
+		local matrixColorsTable = {}
+		
+		local widthSingleMarker = 2
+		local heightSingleMarker = 20
+		local deltaX_Position = 2
+
+		local ClRed		= 0x0000FF
+		local clOrange	= 0x00AEFF
+		local ClYellow 	= 0x00FFFF
+		local ClGreen	= 0x008000
+		local clAqua	= 0xFFFF00
+		local ClBlue	= 0xFF0000
+		local clPurpure	= 0xFF00B2
+		local ClLightGreen = 0x00FF00
+
+		-- Создаем 255 растровых изображений - комбинаций маркеров в ряд
+		-- Связываем ряд с индексом
+		for i = 1,255 do
+			local bitTable = ToBits(i)
+
+			local bitmap = createBitmap((widthSingleMarker+deltaX_Position)*8, heightSingleMarker)
+			bitmap.Width = (widthSingleMarker + deltaX_Position) * 8
+			bitmap.Height = heightSingleMarker
+
+			-- bitmap.Canvas.clear()
+			-- Обрезка
+			-- Серый цвет
+			bitmap.Canvas.Brush.Color = 0xC8D0D4
+			bitmap.Transparent = true
+			bitmap.TransparentColor = 0xC8D0D4
+
+			bitmap.Canvas.clear()
+			bitmap.Canvas.fillRect(0, 0, bitmap.Width, bitmap.Height)
+
+			-- Рисование маркеров в ряд
+			for j = 1,8 do
+
+				if(bitTable[j] == 1) then
+
+					if (j == 1) then bitmap.Canvas.Brush.Color = ClRed			end
+					if (j == 2) then bitmap.Canvas.Brush.Color = clOrange		end
+					if (j == 3) then bitmap.Canvas.Brush.Color = ClYellow		end
+					if (j == 4) then bitmap.Canvas.Brush.Color = ClGreen		end
+					if (j == 5) then bitmap.Canvas.Brush.Color = clAqua			end
+					if (j == 6) then bitmap.Canvas.Brush.Color = ClBlue			end
+					if (j == 7) then bitmap.Canvas.Brush.Color = clPurpure		end
+					if (j == 8) then bitmap.Canvas.Brush.Color = ClLightGreen	end
+
+					local x0 = (widthSingleMarker + deltaX_Position) * (j - 1)
+					local x1 = x0 + widthSingleMarker
+
+					-- Закраска в ряд
+					bitmap.Canvas.fillRect(x0, 0, x1, 20)
+				end
+
+			end
+
+			-- Сохранить растровое изображение bitmap и карту марекров bitTable
+			local tempalteTable = {}
+			table.insert(tempalteTable, bitTable)
+			table.insert(tempalteTable, bitmap)
+
+			table.insert(matrixColorsTable, tempalteTable)
+		end
+		
+		return matrixColorsTable
+	end
+
+		
+	function FileExist(directoryPath, pathToFile, mask)
+		local paths = getFileList(directoryPath, mask, false)
+		for i=1,#paths do
+			if(paths[i] == pathToFile) then
+				return true
+			end
+		end
+		return false
+	end
+	
+	
+	function FindComponentByClassName(stringClassName)
+		local formCount = getFormCount()
+		for i=0, formCount-1 do
+			local form = getForm(i)
+			local componentCount = form.getComponentCount()
+			for j=0, componentCount-1 do
+				local component = form.getComponent(j)
+				if(component.ClassName == stringClassName) then
+					--print(component.ClassName ..'__'.. component.Name)
+					return component
+				end
+			end
+		end
+	end
+	
+	-- КЛАСС ClassSettings Сохранение и загрузка параметров
+
+    ClassSettings = {}
+    ClassSettings.__index = ClassSettings
+    function ClassSettings:New(_fileName, _maskFile)
+	
+		local obj = {}
+		obj.stringList = createStringlist()
+		obj.fileName = _fileName
+		obj.maskFile = _maskFile
+		
+		obj.directoryPath = getCheatEngineDir()..'autorun'
+		obj.filePath = obj.directoryPath..'\\'..obj.fileName
+		
+		-- Есть ли такой ключ
+		function obj:HasKey(keyString)
+			local stringCount = self.stringList.Count
+			for i=0,stringCount-1 do
+				local items = self:Split(self.stringList[i])
+				if(keyString == items[1]) then
+					return true 
+				end
+			end
+		end
+		
+		-- Получить значение ключа
+		function obj:Get(keyString, defaultValue)
+			if(obj:HasKey(keyString)) then
+				local stringCount = self.stringList.Count
+				for i=0,stringCount-1 do
+					local items = self:Split(self.stringList[i])
+					if(keyString == items[1]) then
+						return  items[2]
+					end
+				end
+			end
+			return defaultValue
+		end
+		
+		-- Записать ключ
+		function obj:Set(keyString, stringOrDigitalValue)
+			-- Искать номер строки
+			local stringCount = self.stringList.Count
+			for i=0,stringCount-1 do
+				local items = self:Split(self.stringList[i])
+				if(keyString == items[1]) then
+					items[2] = stringOrDigitalValue
+					self.stringList.remove(self.stringList[i])
+					break
+				end
+			end
+			
+			self.stringList.add (keyString..' '..stringOrDigitalValue)
+		end
+		
+	
+		-- Возвращает числовой вариант
+		function obj:GetDigital(keyString, defaultValue)
+			if(obj:HasKey(keyString)) then
+				return tonumber(obj:Get(keyString))
+			end
+			return defaultValue
+		end
+
+		-- Сохранить все ключи
+		function obj:Save()
+			self.stringList.saveToFile(obj.filePath)
+		end
+
+		function obj:FileExist(directoryPath, pathToFile, mask)
+			local paths = getFileList(directoryPath, mask, false)
+			for i=1,#paths do
+				if(paths[i] == pathToFile) then
+					return true
+				end
+			end
+			return false
+		end
+		
+		function obj:Split(argString)
+			local resultTable = {}
+			for i in string.gmatch(argString, "%S+") do
+				table.insert(resultTable, i)
+			end
+			return resultTable
+		end
+
+		
+		-- Загрузка ключей в память
+		if(obj:FileExist(obj.directoryPath, obj.filePath, obj.maskFile)) then
+			obj.stringList.loadFromFile(obj.filePath)
+		end	
+		setmetatable(obj, self)
+		return obj
+	end
+		
+	
+	classSettings = ClassSettings:New('userdata.txt', '*.txt')
+	
+	-- КЛАСС ClassPainColorPath. Рисует пути из tablePuths
+
+    ClassManagerColorPath = {}
+    ClassManagerColorPath.__index = ClassManagerColorPath
+    function ClassManagerColorPath:New(_matrixColorsTable)
+	
+		local obj = {}
+		
+		obj.matrixColorsTable = _matrixColorsTable
+		obj.tablePuths = {}
+		obj.temporaryMarkerTable = {}
+
+		-- Максимум 8 цветных путей
+		for i=1,8 do
+			local tableAddresses = {}
+			table.insert(obj.tablePuths, tableAddresses)
+		end
+		
+		function obj:LineRender(address, x, y, canvas)
+			
+			for i = 1,8 do
+				obj.temporaryMarkerTable[i] = 0
+			end
+
+			-- по умолчанию #tablePuths == 8
+			for i = 1,#obj.tablePuths do
+				-- tableAddresses хранит пары адресов непрерывного пути. Все пары составляют путь
+				local tableAddresses = obj.tablePuths[i][1]
+				if(tableAddresses ~= nil) then
+					for j = 1, #tableAddresses do
+						if (tableAddresses[j] == address) then
+							obj.temporaryMarkerTable[i] = 1
+						end
+					end
+				end
+			end
+
+			local allNull = true
+			for i = 1,8 do
+				if(obj.temporaryMarkerTable[i] == 1) then
+				allNull = false
+				end
+			end
+
+			if(allNull) then
+				return
+			end
+
+			-- Ищем в матрице индекс растрового изображения
+			for i = 1,255 do
+
+				-- Сохранить растровое изображение bitmap и карту марекров bitTable
+				local tempalteTable = obj.matrixColorsTable[i]
+				local bitTable = tempalteTable[1]
+				local bitmap = tempalteTable[2]
+
+				local isFindedIndex = true
+				for j = 1,8 do
+					if (obj.temporaryMarkerTable[j] ~= bitTable[j]) then
+					  isFindedIndex = false
+					  break
+					end
+				end
+
+				if (isFindedIndex) then
+					canvas.draw(x,y, bitmap) 
+				end
+			end
+
+		end
+
+
+		setmetatable(obj, self)
+		return obj
+    end
+
+
+	
+	-- КЛАСС ClassLogManagerFunction
+		-- рисует внутри функции
+    ClassLogManagerFunction = {}
+    ClassLogManagerFunction.__index = ClassLogManagerFunction
+    function ClassLogManagerFunction:New(_managerColorPath, _disassembler)
+	
+		local obj = {}
+		obj.disassembler 		= _disassembler
+		obj.startAddress 	 	= 0
+		obj.hitsCode 			= 0
+		obj.managerColorPath 	= _managerColorPath
+		obj.isOnHitBranch1 		= false
+		obj.isOnHitBranch2 		= false
+		obj.isOnHitBranch3 		= false
+		obj.isOnHitBranch4 		= false
+		obj.isOnHitBranch5 		= false
+		obj.isOnHitBranch6 		= false
+		obj.isOnHitBranch7 		= false
+		obj.isOnHitBranch8		= false
+		
+		obj.preEndAddress 		= 0
+		obj.endAddress 			= 0
+		obj.temporaryRecordPath = {}
+		obj.countGlobalPath 	= 1
+		obj.countHitBranch 		= {}
+		
+		obj.hitsCount = 0
+		obj.uiTimer = nil
+		obj.showMessageF8_Done = false
+		
+		obj.stageProgress = false
+		
+		obj.needUpdateDraw = false
+		
+		obj.popupmenuFromDefaultDisassemblerView = control_getPopupMenu(getMemoryViewForm().DisassemblerView)
+		
+		obj._64Bit = 0
+		
+		obj.isRunningPlugin = false
+		 
+		obj.changeCECheckboxBreakNewBranch = false			-- прерываться на любой новой X ветке кода (чтобы пойти дальше, то нажать на F9)
+		obj.changeCECheckboxBreakOnEndBranch  = false		-- прерываться при повторном проходе X ветки на конце ветви
+		obj.hitOnBranchLastSoconds = 0
+
+		obj.isPauseMarkerPlugin = false
+
+		-- Загрузка формы
+		obj.frmMarkedBranches = createFormFromFile(getCheatEngineDir().."\\autorun\\forms\\Lua Plugin CE Marked addresses.frm")
+		-- Загрузка прошлых значений (если они есть)
+		obj.frmMarkedBranches.CEEditStartAddress.Text = getUserRegistryEnvironmentVariable('frmMarkedBranches.CEEditStartAddress.Text')
+		obj.frmMarkedBranches.CEEditEndAddress.Text = getUserRegistryEnvironmentVariable('frmMarkedBranches.CEEditEndAddress.Text')
+		
+
+		local menuItem_temp = createMenuItem(popupmenu)
+		local menuItems = getMemoryViewForm().findComponentByName('MainMenu1').Items
+		
+		
+		menuItem_temp.Caption = '-'
+		
+		obj.popupmenuFromDefaultDisassemblerView.Items.add (menuItem_temp)
+		local menuItemMoveAddressesFromPopupmenuFromDefaultDisassemblerView = createMenuItem(obj.popupmenuFromDefaultDisassemblerView)
+		menuItemMoveAddressesFromPopupmenuFromDefaultDisassemblerView.Caption = '* Copy frame addresses to form (Marker Plugin)'
+
+		-- Добавить опцию перемещения адресов в форму
+		menuItemMoveAddressesFromPopupmenuFromDefaultDisassemblerView.onClick = function (disassemblerview, address, address2)
+			local addr1 = getMemoryViewForm().DisassemblerView.SelectedAddress
+			local addr2 = getMemoryViewForm().DisassemblerView.SelectedAddress2
+
+			if(addr2 &gt; addr1) then
+				local tempAddress = addr2
+				addr2 = addr1
+				addr1 = tempAddress
+			end
+
+			obj.frmMarkedBranches.CEEditStartAddress.Text = getNameFromAddress(addr2)
+			obj.frmMarkedBranches.CEEditEndAddress.Text = getNameFromAddress(addr1)
+			obj.frmMarkedBranches.Show()
+			obj.disassembler.frmDissassembler.Show()
+		end
+
+		menuItemMoveAddressesFromPopupmenuFromDefaultDisassemblerView.setShortcut('Ctrl+Shift+C')
+		obj.popupmenuFromDefaultDisassemblerView.Items.add (menuItemMoveAddressesFromPopupmenuFromDefaultDisassemblerView)
+
+		-- Добавить опцию Показать форму в подменю Tools
+		local count = menuItems.Count - 1
+		for i = 0, count-1 do
+		   local item = menuItems.getItem(i)
+		   if(item.Caption == 'Tools') then
+			  local mi = createMenuItem(popupmenu)
+			  mi.Caption = '-'
+			  item.add(mi)
+			  mi = createMenuItem(popupmenu)
+			  mi.Caption = '* Marker Plugin'
+			  mi.onClick = function ()	
+				obj.frmMarkedBranches.Show() 
+				obj.disassembler.frmDissassembler.Show()	
+				obj.disassembler.topAddress = getMemoryViewForm().DisassemblerView.TopAddress
+				obj.disassembler:Draw()
+			  end
+			  item.add(mi)
+			  break
+		   end
+		end
+		-- Кнопка запуска
+		obj.frmMarkedBranches.CEButtonRun.Caption = 'Run'
+		obj.frmMarkedBranches.CEButtonRun.onClick = function ()
+			obj:Start()
+		end
+
+		-- Отключить панель компонентов
+		obj.frmMarkedBranches.CEPanelSettings.Enabled = false
+
+		-- CECheckbox_breakNewBranch 		- прерываться на любой новой X ветке кода (чтобы пойти дальше, то нажать на F9)
+		obj.frmMarkedBranches.CECheckboxBreakNewBranch.OnChange = function () 
+			obj.changeCECheckboxBreakNewBranch = obj.frmMarkedBranches.CECheckboxBreakNewBranch.Checked 
+		end
+
+
+		-- CECheckbox__breakOnEndBranch 	- прерываться при повторном проходе X ветки на конце ветви
+		obj.frmMarkedBranches.CECheckboxBreakOnEndBranch.OnChange = function () 
+			obj.changeCECheckboxBreakOnEndBranch  = obj.frmMarkedBranches.CECheckboxBreakOnEndBranch.Checked 
+		end
+
+
+		obj.frmMarkedBranches.CECheckboxBreak1.OnChange = function () isOnHitBranch1 = obj.frmMarkedBranches.CECheckboxBreak1.Checked end
+		obj.frmMarkedBranches.CECheckboxBreak2.OnChange = function () isOnHitBranch2 = obj.frmMarkedBranches.CECheckboxBreak2.Checked end
+		obj.frmMarkedBranches.CECheckboxBreak3.OnChange = function () isOnHitBranch3 = obj.frmMarkedBranches.CECheckboxBreak3.Checked end
+		obj.frmMarkedBranches.CECheckboxBreak4.OnChange = function () isOnHitBranch4 = obj.frmMarkedBranches.CECheckboxBreak4.Checked end
+		obj.frmMarkedBranches.CECheckboxBreak5.OnChange = function () isOnHitBranch5 = obj.frmMarkedBranches.CECheckboxBreak5.Checked end
+		obj.frmMarkedBranches.CECheckboxBreak6.OnChange = function () isOnHitBranch6 = obj.frmMarkedBranches.CECheckboxBreak6.Checked end
+		obj.frmMarkedBranches.CECheckboxBreak7.OnChange = function () isOnHitBranch7 = obj.frmMarkedBranches.CECheckboxBreak7.Checked end
+		obj.frmMarkedBranches.CECheckboxBreak8.OnChange = function () isOnHitBranch8 = obj.frmMarkedBranches.CECheckboxBreak8.Checked end
+
+		-- Переходы по кнопкам
+		--obj.frmMarkedBranches.btnTopAddress.OnClick = function () getMemoryViewForm().DisassemblerView.TopAddress = getAddress(frmMarkedBranches.CEEditStartAddress.Text) end
+		--obj.frmMarkedBranches.btnBottomAddress.OnClick = function () getMemoryViewForm().DisassemblerView.TopAddress = getAddress(frmMarkedBranches.CEEditEndAddress.Text) end
+
+		obj.frmMarkedBranches.btnTopAddress.OnClick = function () 
+			obj.disassembler:GoToAddress(getAddress(obj.frmMarkedBranches.CEEditStartAddress.Text), true, true, true)
+		end
+		
+		obj.frmMarkedBranches.btnBottomAddress.OnClick = function () 
+			obj.disassembler:GoToAddress(getAddress(obj.frmMarkedBranches.CEEditEndAddress.Text), true, true, true)
+		end
+		
+		-- Запуск.
+		function obj:Start()
+
+			obj.endAddress = 0
+			obj.preEndAddress = 0
+			
+			obj.managerColorPath.tablePuths = {}
+			
+			for i=1,8 do
+				local tableAddresses = {}
+				table.insert(obj.managerColorPath.tablePuths, tableAddresses)
+			end
+			
+			obj.temporaryRecordPath = {}
+			obj.countGlobalPath = 1
+			obj.hitsCode = 0
+			obj.hitOnBranchLastSoconds = 0
+			obj.hitsCount = 0
+			obj.stageProgress = 0
+
+			obj._64Bit = targetIs64Bit()
+
+			if(getOpenedProcessID() == 0) then
+				showMessage('Attach to process')
+				return
+			end
+			
+			obj.startAddress = getAddress(obj.frmMarkedBranches.CEEditStartAddress.Text)
+
+			if(obj.startAddress == nil) then
+				showMessage('Error. Change "Start Address" field')
+				return
+			end
+			-- Запомнить начальный адрес (будет загружаться при запуске)
+			setUserRegistryEnvironmentVariable('frmMarkedBranches.CEEditStartAddress.Text',
+				obj.frmMarkedBranches.CEEditStartAddress.Text)
+
+			obj.endAddress = getAddress(obj.frmMarkedBranches.CEEditEndAddress.Text)
+
+
+			if(obj.endAddress == nil) then
+				showMessage('Error.  Change "End Address"')
+				return
+			end
+
+			obj.preEndAddress = getPreviousOpcode(obj.endAddress)
+
+			-- Запомнить конечный адрес (будет загружаться при запуске)
+			setUserRegistryEnvironmentVariable('frmMarkedBranches.CEEditEndAddress.Text',
+				obj.frmMarkedBranches.CEEditEndAddress.Text)
+
+			for i = 1,8 do obj.countHitBranch[i] = 0 end
+
+			-- тип отладки (0=default, 1=windows debug, 2=VEHDebug, =Kerneldebug)
+			local typeDebug = 13
+			-- Breakpoint triggers: bptExecute=0, bptAccess=1, bptWrite=2
+			debug_setBreakpoint(obj.startAddress, vtByte, bptExecute)
+			-- vtByte=0, vtWord=1, vtDword=2
+			debug_setBreakpoint(obj.endAddress, vtByte, bptExecute)
+			debugProcess(typeDebug)
+
+			-- UI таймер
+			if(obj.uiTimer == nil) then
+				obj.uiTimer = createTimer(nil, true)
+			else
+				obj.uiTimer.Enabled = true
+			end
+
+			obj.uiTimer.Interval = 1000
+			obj.countTick60 = 0
+			
+			obj.uiTimer.OnTimer = function ()
+
+				
+				if(obj.isRunningPlugin and not obj.isPauseMarkerPlugin) then
+					obj.frmMarkedBranches.CELabelAllHits.Caption = string.format
+					(
+						maskHintHits1,
+						obj.hitsCode,
+						obj.hitsCode - obj.hitOnBranchLastSoconds,
+						obj.hitsCount,
+						obj.countGlobalPath - 1
+					)
+					
+					obj.hitsCount = 0
+					--frmMarkedBranches.CELabelAllHits.Caption = 'All hits: '..hitsCode
+					--frmMarkedBranches.CELabelCountBranches.Caption = 'Branches: '..(countGlobalPath - 1)
+			
+					obj.frmMarkedBranches.CELabelHits1.Caption = string.format(maskHintHits2, obj.countHitBranch[1])
+					obj.frmMarkedBranches.CELabelHits2.Caption = string.format(maskHintHits2, obj.countHitBranch[2])
+					obj.frmMarkedBranches.CELabelHits3.Caption = string.format(maskHintHits2, obj.countHitBranch[3])
+					obj.frmMarkedBranches.CELabelHits4.Caption = string.format(maskHintHits2, obj.countHitBranch[4])
+					obj.frmMarkedBranches.CELabelHits5.Caption = string.format(maskHintHits2, obj.countHitBranch[5])
+					obj.frmMarkedBranches.CELabelHits6.Caption = string.format(maskHintHits2, obj.countHitBranch[6])
+					obj.frmMarkedBranches.CELabelHits7.Caption = string.format(maskHintHits2, obj.countHitBranch[7])
+					obj.frmMarkedBranches.CELabelHits8.Caption = string.format(maskHintHits2, obj.countHitBranch[8])
+					
+
+					obj.hitOnBranchLastSoconds = obj.hitsCode
+				end
+			
+				obj.countTick60 = obj.countTick60 + 1
+				if(obj.countTick60 &gt;= 60) then
+					obj.countTick60 = 0
+					--print(string.format('Lua memory usage %.1f MiB',collectgarbage('count')/1024))
+					collectgarbage("restart")
+					collectgarbage("collect")
+					--print(string.format('Lua memory usage %.1f MiB',collectgarbage('count')/1024))
+				end
+				
+			end
+
+			-- Переход и наблюдение
+			-- Нельзя вызывать иначе баги интерфейса
+			--getMemoryViewForm().DisassemblerView.TopAddress = obj.startAddress
+			-- Под вопросом. Показывать или нет обычный дизассемблер (возможно вынести в опции)
+			--getMemoryViewForm().Show()
+
+			obj.frmMarkedBranches.CEButtonRun.Caption = 'Stop'
+			obj.frmMarkedBranches.CEButtonRun.OnClick = function ()
+				obj:Stop()
+			end
+
+			obj.frmMarkedBranches.CEEditStartAddress.Enabled = false
+			obj.frmMarkedBranches.CEEditEndAddress.Enabled = false
+			menuItemMoveAddressesFromPopupmenuFromDefaultDisassemblerView.Enabled = false
+			obj.frmMarkedBranches.CEPanelSettings.Enabled = true
+
+			-- Состояние кнопки паузы "Выключено"
+			obj.isPauseMarkerPlugin = false
+			obj.frmMarkedBranches.btnPause.Caption = 'Pause off'
+			obj.frmMarkedBranches.btnPause.Enabled = true
+			obj.frmMarkedBranches.btnPause.OnClick = function ()
+				if (obj.isPauseMarkerPlugin) then
+					obj.isPauseMarkerPlugin = false
+					obj.frmMarkedBranches.btnPause.Caption = 'Pause off'
+					
+					debug_setBreakpoint(obj.startAddress, vtByte, bptExecute)
+					debug_setBreakpoint(obj.endAddress, vtByte, bptExecute)
+				else
+					obj.isPauseMarkerPlugin = true
+					obj.frmMarkedBranches.btnPause.Caption = 'Pause on'
+					
+					debug_removeBreakpoint(obj.startAddress)
+					debug_removeBreakpoint(obj.endAddress)
+				end
+			end
+
+			obj.isRunningPlugin = true
+		end	
+		
+		-- Вызывать, если надо остановить
+		function obj:Stop()
+
+			obj.isRunningPlugin = false
+
+			debug_removeBreakpoint(obj.startAddress)
+			debug_removeBreakpoint(obj.endAddress)
+			obj.uiTimer.Enabled = false
+
+			obj.frmMarkedBranches.CEButtonRun.Caption = 'Run'
+			obj.frmMarkedBranches.CEButtonRun.OnClick = function ()
+				obj:Start()
+			end
+			
+			obj.frmMarkedBranches.CEEditStartAddress.Enabled = true
+			obj.frmMarkedBranches.CEEditEndAddress.Enabled = true
+			menuItemMoveAddressesFromPopupmenuFromDefaultDisassemblerView.Enabled = true
+			obj.frmMarkedBranches.CEPanelSettings.Enabled = false
+			obj.frmMarkedBranches.btnPause.Enabled = false
+			
+			obj.needUpdateDraw = true
+		end	
+		
+		function obj:OnBreakpoint()
+
+			if(isPauseMarkerPlugin) then
+				debug_continueFromBreakpoint(co_run)
+				return 1
+			end
+
+			local xEIP = 0
+
+			if(obj._64Bit) then
+				xEIP = RIP
+			else
+				xEIP = EIP
+			end
+
+			if(not obj.stageProgress and xEIP == obj.startAddress) then
+				obj.hitsCode = obj.hitsCode + 1
+
+				obj.stageProgress = true
+			end
+
+			if(obj.stageProgress) then
+				obj.hitsCount = obj.hitsCount + 1
+				--print(string.format('EIP = %08x', EIP))
+				obj.showMessageF8_Done = false
+
+				-- Собирание информации
+				for i = 1,#obj.managerColorPath.tablePuths  do
+					local tableAddresses = obj.managerColorPath.tablePuths[i][1]
+					if(tableAddresses ~= nil and tableAddresses[#tableAddresses] == xEIP) then
+
+						obj.countHitBranch[i] = obj.countHitBranch[i] + 1
+
+						-- прерываться при повторном проходе X ветки на конце ветви
+						if (obj.changeCECheckboxBreakOnEndBranch) then
+							--print('T1')
+							obj.showMessageF8_Done = true
+						else
+							--print('T3')
+							-- Прерываемся в конце ветки
+							if( (i == 1 and obj.isOnHitBranch1) or (i == 2 and obj.isOnHitBranch2) or (i == 3 and obj.isOnHitBranch3) or (i == 4 and obj.isOnHitBranch4) or (5 == 1 and obj.isOnHitBranch5) or (i == 6 and obj.isOnHitBranch6) or (7 == 1 and obj.isOnHitBranch7) or (8 == 1 and obj.isOnHitBranch8)) then
+								--print('T2')
+								obj.showMessageF8_Done = true
+							end
+						end
+
+					end
+				end
+
+				-- Добавляет адрес во временную таблицу
+				table.insert(obj.temporaryRecordPath, xEIP)
+
+				--print(#obj.temporaryRecordPath..'-'..string.format('%08x', xEIP))
+
+				if ((xEIP &lt; obj.startAddress or xEIP &gt;= obj.endAddress)) then
+
+					if(obj.countGlobalPath &lt;= 8) then
+						-- Сравнение информациии с сохраненной информацией и расчеты
+
+						--------------------------------------------------------
+							-- TODO: Паковать адреса парами (оптимизация, сделать потом). Сравнивать пары адресов с другими путями, если отличиные, то это новый путь
+							-- По умолчанию есть отличия между текущим путем и ранее сохраненным
+							local anyDifference = false
+
+
+							-- Если все ветки пустые, то проход считается новым
+							-- Проверить, что нет еще ни одной созданной ветки
+							local someBranch = false
+							-- Проверить, есть ли хотя бы одно совпадения с ветками
+							local anyDiffBranch = false
+
+							for i = 1,#obj.managerColorPath.tablePuths do
+								if(obj.managerColorPath.tablePuths[i] ~= nil and #obj.managerColorPath.tablePuths[i] &gt; 0) then
+									someBranch = true
+									break
+								end
+							end
+
+							if (not someBranch) then
+								anyDifference = true
+								--print('J')
+								goto done
+							end
+							----------------------------------------------------
+
+							for i = 1,#obj.managerColorPath.tablePuths  do
+								local tableAddresses = obj.managerColorPath.tablePuths[i][1]
+
+								if(tableAddresses ~= nil and #tableAddresses == #obj.temporaryRecordPath) then
+
+									anyDiffBranch = false
+
+									for j = 1, #tableAddresses do
+										if (tableAddresses[j] ~=  obj.temporaryRecordPath[j]) then
+											-- У ветки i, есть различия. Но нужно проверить остальные пути
+											anyDiffBranch = true
+											break
+										end
+									end
+
+									-- Похожая ветка
+									if(not anyDiffBranch) then
+										--print('B')
+										-- Это похожая ветка
+										anyDifference = false
+										goto done
+									end
+
+								end
+
+
+								if (i &gt;= #obj.managerColorPath.tablePuths) then
+									-- Не было повтора пути, поэтому будет создана новая ветка
+									--print(#tablePuths..'-'..i)
+									--print(#obj.temporaryRecordPath..'--'..#tableAddresses)
+									--for i = 1,#tablePuths  do
+									--	local tableAddresses = tablePuths[i][1]
+									--	if(tableAddresses == nil) then
+									--		print ('nil')
+									--	else
+									--		print(#tableAddresses..'--'..#obj.temporaryRecordPath)
+									--	end
+									--end
+
+									--print('C')
+									-- Не было найдено ни одного совпадения
+									anyDifference = true
+									goto done
+								end
+							end
+
+							----------------------------------------------------
+							--print('D')
+
+							::done::
+
+							-- Это отличиный путь и его нужно связать с новым цветом
+							if (anyDifference and obj.countGlobalPath &lt; 8) then
+
+								obj.managerColorPath.tablePuths[obj.countGlobalPath][1] = obj.temporaryRecordPath
+
+								--print('Add table size '..#obj.managerColorPath.tablePuths[countGlobalPath][1])
+
+								obj.countGlobalPath = obj.countGlobalPath + 1
+
+								obj.needUpdateDraw = true
+								
+								
+								if(obj.countGlobalPath &gt; 8) then
+									obj.stageProgress = false
+									showMessage('You have ready maximum 8 marks. You can not get new mark')
+								else
+									-- прерываться на любой новой X ветке кода (чтобы пойти дальше, то нажать на F9)
+									--changeCECheckboxBreakNewBranch
+									if(obj.changeCECheckboxBreakNewBranch) then
+										--В этот момент EIP вышл из функции или за адресом (endAddress + 1)
+										getMemoryViewForm().DisassemblerView.TopAddress = obj.temporaryRecordPath[#obj.temporaryRecordPath]
+										
+										showMessage('If you ready then press button "F9" or run tracelog CE')
+										--print ('new branch')
+										-- Если changeCECheckboxBreakNewBranch == true, то На новой ветке пользователю надо нажать на F9
+										--print ('A3')
+										obj.temporaryRecordPath = {}
+										-- TODO: сделать оптимизаци obj.temporaryRecordPath чистку
+										return 0 --unexpected breakpoint, show the the user
+										--return 1 --I handled it so dont tell the user
+									end
+								end
+							end
+
+							-- Если создается 8 путей, то новый путь не создается. Отладка останавливается
+					end
+
+					-- Добавляет адрес во временную таблицу
+					obj.temporaryRecordPath = {}
+
+					-- TODO: obj.temporaryRecordPath optimization with nil values
+					--for k in pairs (obj.temporaryRecordPath) do
+					--	obj.temporaryRecordPath [k] = nil
+					--end
+
+
+					-- Если нужна остановка, то игнорировать
+					if(not obj.showMessageF8_Done) then
+						--Breakpoint continue methods: co_run=0, co_stepinto=1, co_stepover=2
+						debug_continueFromBreakpoint(co_run)
+						--print('B_'..string.format('%08x', EIP))
+					end
+
+					-- Завершении стадии Computing
+					obj.stageProgress = false
+
+
+					if(obj.showMessageF8_Done) then
+						-- Чтобы продолжить отладку нужно нажать на F9
+						--if(getUserRegistryEnvironmentVariable('Hint f8') == '1') then
+						--	setUserRegistryEnvironmentVariable('Hint f8', '1')
+						--	showMessage('If you ready then press button "F8". This message will no longer appear')
+						--end
+
+						showMessage('If you ready then press button "F8" or run tracelog CE')
+						return 0 --unexpected breakpoint, show the the user
+					end
+					return 1 --I handled it so dont tell the user
+				end
+
+				-- Если это предпоследний адрес, то
+				if(xEIP == obj.preEndAddress) then
+					debug_continueFromBreakpoint(co_run)
+				else
+					debug_continueFromBreakpoint(co_stepover)
+				end
+
+			end
+
+			return 1 
+		end
+				
+		
+		setmetatable(obj, self)
+		return obj
+    end
+
+	
+	-- КЛАСС TracelogWindow
+		-- Локальные контекстные меню: 1) установка брейкпоинтов на все call-ы (пока единственная контекстная функция)
+		-- Извлечение таблицы адресов из формы
+    TracelogWindow = {}
+    TracelogWindow.__index = TracelogWindow
+    function TracelogWindow:New(_frmTracelog, _disassembler)
+		local obj = {}
+		obj.isDestroyForm = false
+		obj.frmTracelog = _frmTracelog
+
+		obj.disassembler = _disassembler
+	
+		-- Создает таблицу из integer адресов
+		function obj:GetAddressTables(lvTracer)
+			local treeNodes = lvTracer.Items
+			local count = treeNodes.getCount()
+			local addresses = {}
+
+			local s = ''
+			for i = 0, count-1 do
+				local treeNode = treeNodes.getItem(i)
+				if(treeNode.Text ~= '') then
+					s = string.gsub(treeNode.Text, "(%S*)%s*%S*", "%1")
+					table.insert(addresses, getAddress(s))
+				end
+			end
+			return addresses
+		end
+		
+		-- Вывоводит все адреса из трейслога (не используемя функция)
+		function obj:PrintTraceLog()
+			local treeNodes = obj.frmTracelog.lvTracer.Items
+			local count = treeNodes.getCount()
+
+			local s = ''
+			for i = 0, count-1 do
+				local treeNode = treeNodes.getItem(i)
+				s = s .. string.gsub(treeNode.Text, "(%S*)%s*%S*", "%1")..'\r\n'
+			end
+			print(s)
+		end
+
+
+		-- Проверяет наличие формы
+		function obj:FrmIsDestroy()
+			return obj.frmTracelog == nil
+		end
+
+		-- Возвращает таблицу адресов node-родителей
+		function obj:GetTableAllParents(treeView)
+		  local treeNodes = treeView.Items
+		  local count = treeNodes.getCount()
+		  local parents = {}
+		  local firstNotParent = false
+		  for i = 0, count-1 do
+			  local treeNode = treeNodes.getItem(i)
+			  if(treeNode.Text ~= '') then
+					if(treeNode.Parent ~= nil and not obj:TableContaints(parents, treeNode.Parent)) then
+						table.insert(parents, treeNode.Parent)
+					elseif(not firstNotParent and treeNode.Parent == nil and not obj:TableContaints(parents, treeNode.Parent)) then
+						firstNotParent = true
+						table.insert(parents, treeNode)
+				   end
+			  end
+		  end
+		  return parents
+		end
+
+		
+		-- Проверяет нахождение элемента в таблице
+		function obj:TableContaints(_table, item)
+
+			if(_table == nil) then
+				return false
+			end
+			for i = 1, #_table do
+				if(_table[i] == item) then
+					return true
+				end
+			end
+
+			return false
+		end
+		
+		-- Возвращает таблицу адресов выходов из ветвей
+		function obj:GetTableExitLocalBranches(treeView)
+			local treeNodes = treeView.Items
+			local count = treeNodes.getCount()
+			local addresses = {}
+			local allParents = obj:GetTableAllParents(treeView)
+
+			for i = 1, #allParents do
+				local treeNode = allParents[i]
+				local line = 0
+				if(not treeNode.HasChildren) then
+					line = treeNode.Text
+				elseif(treeNode.Items[0].Text == '') then
+					line = treeNode.Items[1].Text
+				else
+					line = treeNode.Items[0].Text
+				end
+				s = string.gsub(line, "(%S*)%s*%S*", "%1")
+				table.insert(addresses, getAddress(s))
+			end
+			return addresses
+		end
+
+		
+		-- Добавление контекстной функции устаноки брейкпоинтов на меню
+		local menuItems = _frmTracelog.findComponentByName('pmTracer').Items
+		local menuItemSetBreakPoint = createMenuItem(menuItems)
+		menuItemSetBreakPoint.Caption = 'Set breakpoints on calls'
+		menuItemSetBreakPoint.OnClick = function ()
+		
+			local resultString = inputQuery('Set name tracelog', 'Name:', 'Change ammo, health... etc')
+			if(resultString ~= nil) then
+				obj.frmTracelog.Caption = resultString
+			end
+		
+			local tableAddresses = obj:GetTableExitLocalBranches(obj.frmTracelog.lvTracer)
+			local tableBreakPoints = debug_getBreakpointList()
+			for i=1, #tableAddresses do
+				local previousAddress = getPreviousOpcode(tableAddresses[i])
+				if(not obj:TableContaints(tableBreakPoints, previousAddress)) then
+					setComment(previousAddress, string.format('RET -->> %s (%s)', i, resultString))
+					debug_setBreakpoint(previousAddress, vtByte, bptExecute)
+				end
+			end
+		end
+		
+		setProperty(_frmTracelog.lvTracer, 'OnDblClick', function (sender) 
+			local lineAddress = string.gsub(sender.getSelected().Text, "(%S*)%s*%S*", "%1")
+			local selectAddress = getAddress(getNameFromAddress(lineAddress))
+			local copyAddress = selectAddress
+			-- Подняться на инструкций 15 выше
+			for i=1,15 do
+				copyAddress = getPreviousOpcode(copyAddress)
+			end
+			obj.disassembler.topAddress = copyAddress
+			-- Выделить адрес
+			local disassemblerView = getMemoryViewForm().DisassemblerView
+			disassemblerView.TopAddress = copyAddress
+			disassemblerView.SelectedAddress = selectAddress
+			obj.disassembler.selectedAddress = selectAddress
+			obj.disassembler:Draw()
+		end)
+
+		menuItems.add(menuItemSetBreakPoint)		
+
+		setmetatable(obj, self)
+		return obj
+    end
+	
+	-- КЛАСС ClassLogManagerTracelogWindows. рисует по окнам трейслогов CE. TODO
+    ClassLogManagerTracelogWindows = {}
+    ClassLogManagerTracelogWindows.__index = ClassLogManagerTracelogWindows
+    function ClassLogManagerTracelogWindows:New(_managerColorPath, _disassembler)
+	
+		local obj = {}
+		obj.managerColorPath = _managerColorPath
+		obj.disassembler = _disassembler
+		obj.needUpdateDraw = false
+		obj.storeTraceLogs = {}
+		
+		
+		-- Возвращает окна трейслога
+		function obj:GetFormsTracelogs()
+			local tracerWindows = {}
+			local max = getFormCount()
+			for i=0, max-1 do
+				if(string.match(getForm(i).ClassName,'TfrmTracer')) then
+					table.insert(tracerWindows,getForm(i))
+				end
+			end
+			return tracerWindows
+		end
+
+			
+		-- Создает массив путей для рисования
+		obj.managerColorPath.tablePuths = {}
+			
+		for i=1,8 do
+			local tableAddresses = {}
+			table.insert(obj.managerColorPath.tablePuths, tableAddresses)
+		end
+			
+		obj.timer = createTimer()
+		obj.timer.Interval = 3000
+		
+		
+		function obj:ContainsFormInStory(frmTraceLog)
+			for i = 1, #obj.storeTraceLogs do
+				if(not obj.storeTraceLogs[i].isDestroyForm and obj.storeTraceLogs[i].frmTracelog == frmTraceLog) then 
+					return true 
+				end
+			end	
+			return false
+		end
+		
+		function obj:ContainsFormInTable(tableForms, frmTraceLog)
+			for i = 1, #tableForms do
+				if(	tableForms[i] ~= nil and
+					tableForms[i].lvTracer ~= nil and
+					tableForms[i].lvTracer.Items ~= nil and
+					tableForms[i] == frmTraceLog) then
+					return true
+				end
+			end	
+			return false
+		end
+		
+		function obj:GetNilIdex()
+			local freeIndex = -1
+			for i=1,#obj.storeTraceLogs do
+				if(obj.storeTraceLogs[i].isDestroyForm) then freeIndex = i	break end
+			end
+			return freeIndex
+		end
+		
+		
+		obj.timer.OnTimer = function ()
+
+			-- Поиск окон
+			local frmsTraceLog = obj:GetFormsTracelogs()
+			local someChangeData = false
+			
+			-- Удалить данные не найденных форм
+			for i=1,#obj.storeTraceLogs do
+				if(not obj.storeTraceLogs[i].isDestroyForm) then
+					-- Если окно перестало существовать, то данные стираются
+					if(not obj:ContainsFormInTable(frmsTraceLog, obj.storeTraceLogs[i].frmTracelog)) then
+						obj.storeTraceLogs[i].isDestroyForm = true
+						obj.managerColorPath.tablePuths[i][1] = {}
+						someChangeData = true
+					end
+				end
+			end
+			
+			-- Поиск новых окон и связанные данных с ними
+			for i = 1, #frmsTraceLog do
+				-- Если окно есть, а дресов в нем нет, то пропустить его
+				if(	frmsTraceLog[i] ~= nil and
+					frmsTraceLog[i].lvTracer ~= nil and
+					frmsTraceLog[i].lvTracer.Items ~= nil) then
+					
+					-- Если в таблице нет формы, то добавить или вcтавить в пустой слот
+					if(not obj:ContainsFormInStory(frmsTraceLog[i])) then
+					
+						-- Если окно трейслога было уничтожено, то использовать его индекс
+						local freeIndex = obj:GetNilIdex()
+						-- Если нет постого слота, то создание новых данных в конце списка
+						if(freeIndex == -1) then	
+							-- Не более девяти слотов
+							if(#obj.storeTraceLogs &lt; 9) then
+								frmsTraceLog[i].Caption = 'Tracer '..#obj.storeTraceLogs+1
+								table.insert(obj.storeTraceLogs, TracelogWindow:New(frmsTraceLog[i], obj.disassembler))
+							end
+						else
+							-- Новые данные в свободный слот
+							frmsTraceLog[i].Caption = 'Tracer '..freeIndex
+							obj.storeTraceLogs[freeIndex] = TracelogWindow:New(frmsTraceLog[i], obj.disassembler)
+						end	
+					end
+				end
+			end		
+		
+			
+			-- Рисование путей	
+			for i=1,#obj.storeTraceLogs do
+
+				if(not obj.storeTraceLogs[i].isDestroyForm) then
+					if(obj.storeTraceLogs[i].frmTracelog ~= nil and
+						obj.storeTraceLogs[i].frmTracelog.lvTracer ~= nil and
+						obj.storeTraceLogs[i].frmTracelog.lvTracer.Items ~= nil	) then
+						local treeView 	= obj.storeTraceLogs[i].frmTracelog.lvTracer
+						local newTable 	= obj.storeTraceLogs[i]:GetAddressTables(treeView)
+						local lastTable = obj.managerColorPath.tablePuths[i][1]
+
+						if (lastTable == nil or #lastTable ~= #newTable) then
+							obj.managerColorPath.tablePuths[i][1] = newTable
+							obj.needUpdateDraw = true
+						end
+					end
+				end
+			end
+
+			
+			if(someChangeData) then
+				obj.needUpdateDraw = true
+			end
+		end
+		
+		setmetatable(obj, self)
+		return obj
+    end
+
+
+	-- КЛАСС ClassCostomDisassembler
+    ClassCostomDisassembler = {}
+    ClassCostomDisassembler.__index = ClassCostomDisassembler
+    function ClassCostomDisassembler:New(_frmMarkers)
+	
+		local _frmDissassembler = createForm(false) --frmDissassembler -- createForm(false)
+		
+		_frmDissassembler.DoubleBuffered = true
+		_frmDissassembler.Caption = 'Disassembler'
+		_frmDissassembler.Width = classSettings:GetDigital('obj.frmDissassembler.Width', 500)
+		_frmDissassembler.Height = classSettings:GetDigital('obj.frmDissassembler.Height', 900)
+		_frmDissassembler.Left	= classSettings:GetDigital('obj.frmDissassembler.Left', 0)
+		_frmDissassembler.Top = classSettings:GetDigital('obj.frmDissassembler.Top', 0)
+			
+		
+		if(classSettings:Get('obj.frmDissassembler.Visible', '0') == '1') then
+			_frmDissassembler.show()
+		end
+		
+			
+		_frmDissassembler.setBorderStyle(bsSizeable)
+		_frmDissassembler.FormStyle = 'fsNormal'
+		
+		
+		-- Связывание классов рисования маркеров с логменеджерами
+		local matrixColorsTable = GetMatrixColorsTable()
+		local managerColorPath1 = ClassManagerColorPath:New(matrixColorsTable, column0_X)
+		local managerColorPath2 = ClassManagerColorPath:New(matrixColorsTable, column2_X)
+		
+		local obj = {}
+		obj.frmDissassembler 	= _frmDissassembler
+		obj.frmMarkedBranches	= _frmMarkers
+		obj.selectedAddress 	= -1
+		obj.mainCanvas 			= obj.frmDissassembler.Canvas
+		obj.bufferGraphic 		= createBitmap(obj.frmDissassembler.Canvas.Width, obj.frmDissassembler.Canvas.Height)
+		
+		obj.dy 					= 20
+		obj.column0_X 			= 30	-- маркер X
+		obj.column1_X 			= 65
+		obj.column2_X 			= 70 + 50
+		obj.column3_X 			= 70 + 50 + 40
+		obj.extraLineRender_Y	= -20
+		obj.tableVisibleAddress = {}		-- содержит данные рисуемой таблицы (см. свойства инже по коду)
+		
+		-- Можно поставить другие цвета для фона и шрифта
+		obj.colorBackground 	=  classSettings:GetDigital('obj.colorBackground', 0x00525252)
+		obj.colorFont 			=  0x00FFFFFF --classSettings:GetDigital('obj.colorFont', )
+		
+		obj.defaultDisassembler 	= getDefaultDisassembler()
+		
+		obj.topAddress 				= getMemoryViewForm().DisassemblerView.TopAddress
+		
+		obj.managerFunction 		= ClassLogManagerFunction:New(managerColorPath1, obj)
+		obj.managerTracelogWindows 	= ClassLogManagerTracelogWindows:New(managerColorPath2, obj)
+		
+		obj.frmDissassembler.Color 		= obj.colorBackground
+		obj.frmDissassembler.Font.Color = obj.colorFont 
+		
+		-- Добавление контекстной функции перехода на адрес
+		local popMenu = createPopupMenu(obj.frmDissassembler)
+		local menuItem_temp = createMenuItem(popMenu)
+		menuItem_temp.Caption = 'Go to address'
+		menuItem_temp.OnClick = function ()
+			local goToAddress = 0
+			if(obj.selectedAddress == -1) then
+				goToAddress = obj.topAddress
+			else
+				goToAddress = obj.selectedAddress
+			end
+		
+			local resultString = inputQuery('Go to address', 'Address:', string.format('%08X', goToAddress) )
+			
+			if(resultString ~= nil) then
+				--obj.topAddress = getAddress(getNameFromAddress(resultString))
+				obj:GoToAddress(getAddress(getNameFromAddress(resultString)), false, true, false)
+			end
+		end
+		--menuItem_temp.setShortcut('ctrl+g')
+		popMenu.Items.add (menuItem_temp)
+		obj.frmDissassembler.PopupMenu = popMenu		
+		
+
+		setProperty(obj.frmDissassembler, 'OnPaint', function () 
+			--obj.frmDissassembler.update()
+			--obj.frmDissassembler.repaint()
+			--obj.mainCanvas.Clear()
+			
+			
+			if(obj.isDirtyData) then
+				obj.isDirtyData = false
+				obj:Draw()
+			end
+
+			obj.mainCanvas.draw(0, 0, obj.bufferGraphic)
+			obj:TrackbarRepaint()
+		end)
+		
+		setProperty(obj.frmDissassembler, 'OnResize', function ()
+			if(obj.bufferGraphic.Width ~= obj.mainCanvas.Width or
+				obj.bufferGraphic.Height ~= obj.mainCanvas.Height) then
+				obj.isDirtyResize = true
+			  end
+			end
+		)
+		
+		setProperty(obj.frmDissassembler, 'OnMouseWheelDown', function (sender, x, y) 
+			obj.topAddress = obj.topAddress + getInstructionSize(obj.topAddress)
+		end
+		)
+		
+		setProperty(obj.frmDissassembler, 'OnMouseWheelUp', function (sender, x, y) 
+			obj.topAddress = getPreviousOpcode(obj.topAddress)
+		end
+		)
+		
+		-- Не уничтожать окно при закрытии
+		setProperty(obj.frmDissassembler, 'OnClose', function (sender) 
+			return caHide --Possible options: caHide, caFree, caMinimize, caNone
+		end
+		)		
+
+		
+		obj.checkTimer = createTimer(obj.frmDissassembler)
+		obj.checkTimer.Interval = 50
+		obj.lastTopAddress = 0
+		obj.isDirtyData = false
+		obj.isDirtyResize = false
+		obj.needUpdateDraw = false
+		
+		obj.checkTimer.OnTimer = function ()
+		
+			if(obj.lastTopAddress ~= obj.topAddress or 
+				obj.managerFunction.needUpdateDraw or 
+				obj.managerTracelogWindows.needUpdateDraw or
+				obj.needUpdateDraw
+				) then
+				
+				obj.needUpdateDraw = false
+				obj.managerFunction.needUpdateDraw = false
+				obj.managerTracelogWindows.needUpdateDraw = false
+				
+				obj.lastTopAddress = obj.topAddress
+				obj.isDirtyData = true
+				obj.frmDissassembler.repaint()
+			end
+			
+			
+			if(obj.isDirtyResize) then
+				obj.isDirtyResize = false
+				obj.bufferGraphic.destroy()
+				obj.bufferGraphic = createBitmap(obj.frmDissassembler.Canvas.Width, obj.frmDissassembler.Canvas.Height)
+				obj.bufferGraphic.Canvas.Brush.Color 	= obj.colorBackground
+				obj.bufferGraphic.Canvas.Font.Color 	= obj.colorFont
+				obj.bufferGraphic.Canvas.floodFill(x,y)
+				obj.isDirtyData = true
+				obj.frmDissassembler.repaint()
+			end		
+		end
+		
+		-- Видим ли этот адрес в дизссемблере
+		function obj:IsVisibleAddress(address)
+			for i=1,#obj.tableVisibleAddress do
+				if(obj.tableVisibleAddress[i] == address) then
+					--print('Is visible:' .. string.format("%08X",address))
+					return true
+				end
+			end
+			return false
+		end
+		
+		-- Переместиться на адрес
+		function obj:GoToAddress(targetAddress, isMoveDissassembler, isCenteredYCostomAsm, isCenteredYDefaultAsm)
+
+			local selectAddress = getAddress(getNameFromAddress(targetAddress))
+			
+			obj.selectedAddress = selectAddress
+			
+			local copyAddress = selectAddress
+			
+			if(isCenteredYCostomAsm) then
+				if(obj:IsVisibleAddress(copyAddress)) then
+					-- Если вижу адрес, то выделить его
+				else
+					-- Подняться на инструкций 15 выше
+					for i=1,15 do
+						copyAddress = getPreviousOpcode(copyAddress)
+					end
+					obj.topAddress = copyAddress
+				end
+			end
+			
+			if(isMoveDissassembler) then
+				-- Дефолтный дизассемблер
+				copyAddress = selectAddress
+				if(isCenteredYDefaultAsm) then
+					-- Подняться на инструкций 15 выше
+					for i=1,15 do
+						copyAddress = getPreviousOpcode(copyAddress)
+					end
+				end	
+				
+				local disassemblerView = getMemoryViewForm().DisassemblerView
+				disassemblerView.TopAddress = copyAddress
+				disassemblerView.SelectedAddress = selectAddress
+			end
+			
+			obj.needUpdateDraw = true
+			--obj.isDirtyData = true
+			--obj.frmDissassembler.repaint()
+		end
+		-- Рисует дизассемблерный код и может рисовать пути
+		function obj:Draw()
+			
+			local sizeFont = obj.trackBar10.Position
+			local addXFontSize = obj.trackBar11.Position
+			
+			obj.dy = obj.trackBar9.Position
+			local bufferGraphicCanvas = obj.bufferGraphic.Canvas
+			
+			bufferGraphicCanvas.Font.Size 		= sizeFont
+			bufferGraphicCanvas.Font.Color 		= obj.colorFont
+			bufferGraphicCanvas.Pen.Style 		= 'psSolid'
+			bufferGraphicCanvas.Brush.Style 	= 'bsClear'
+			bufferGraphicCanvas.Brush.Color 	= obj.colorBackground
+			
+			bufferGraphicCanvas.clear()
+			obj.frmDissassembler.color = obj.colorBackground
+			
+
+			local max = tonumber(obj.mainCanvas.Height / obj.dy)
+			local copyAddress = obj.topAddress
+			local tableArrow = {}
+			obj.tableVisibleAddress = {}
+			local tableAddressCounter = {}
+			local bottomAddress = copyAddress
+			
+
+			-- Сбор информаци для рисования стрелок в видвимой части экрана
+			
+			-- Добавляем прыжки, которые не попадают в обзор (при это стрелки будут указывать на видимый дизасемблерный код)
+			local topAddress1000 = copyAddress			-- Будет верхним порогом
+			local userConstAreaAddress = obj.trackBar8.Position	-- 1000
+			
+			local countInstructionDisaaembling = 0
+			local previewAdress = copyAddress
+			repeat
+				countInstructionDisaaembling = countInstructionDisaaembling + 1
+				previewAdress = getPreviousOpcode(previewAdress)
+				topAddress1000 = previewAdress
+
+				local stringData = obj.defaultDisassembler.disassemble(previewAdress)
+				local comment, opcode, bytes, address = splitDisassembledString(stringData)
+				local lastDLastDisassembleData = obj.defaultDisassembler.getLastDisassembleData()
+				
+				if((lastDLastDisassembleData.isConditionalJump or lastDLastDisassembleData.isJump) 	and (not lastDLastDisassembleData.isCall)) then
+					if(not (lastDLastDisassembleData.isJump and lastDLastDisassembleData.modrmValueType==1 and lastDLastDisassembleData.parameterValueType==1)) then
+						if(not (lastDLastDisassembleData.modrmValueType == 0 and lastDLastDisassembleData.parameterValueType == 0)) then
+							local toAddress = lastDLastDisassembleData.parameterValue
+							local amplitude = 0
+							if(previewAdress &gt; toAddress) then
+								amplitude = previewAdress - toAddress
+							else
+								amplitude = toAddress - previewAdress
+							end
+							table.insert(tableArrow, {previewAdress, toAddress, -countInstructionDisaaembling, amplitude})
+						end
+					end
+				end	
+			until countInstructionDisaaembling &gt;= userConstAreaAddress
+			
+			local bottomAddress2 = copyAddress
+
+			for y=1,max-1+userConstAreaAddress do
+			
+				bottomAddress2 = copyAddress
+				
+				local stringData = obj.defaultDisassembler.disassemble(copyAddress)
+				local comment, opcode, bytes, address = splitDisassembledString(stringData)
+				local lastDLastDisassembleData = obj.defaultDisassembler.getLastDisassembleData()
+							
+				if((lastDLastDisassembleData.isConditionalJump or lastDLastDisassembleData.isJump) 	and (not lastDLastDisassembleData.isCall)) then
+					if(not (lastDLastDisassembleData.isJump and lastDLastDisassembleData.modrmValueType==1 and 	lastDLastDisassembleData.parameterValueType==1)) then
+						if(not (lastDLastDisassembleData.modrmValueType == 0 and lastDLastDisassembleData.parameterValueType == 0) ) then
+
+							if(not string.match(opcode,'%[')) then
+							
+								local toAddress = lastDLastDisassembleData.parameterValue
+								local amplitude = 0
+								if(copyAddress &gt; toAddress) then
+									amplitude = copyAddress - toAddress
+								else
+									amplitude = toAddress - copyAddress
+								end
+								table.insert(tableArrow, {copyAddress, toAddress, y, amplitude})
+							end
+							
+						end
+					end
+				end	
+
+
+				if(y&lt;= max-1) then
+					
+					bottomAddress = copyAddress
+					table.insert(obj.tableVisibleAddress, copyAddress)
+
+					local priority1 = obj.trackBar1.Position
+					local isBranchType = lastDLastDisassembleData.isJump or lastDLastDisassembleData.isCall or lastDLastDisassembleData.isRet	
+					table.insert(tableAddressCounter, {copyAddress, y, isBranchType, address, opcode, comment})
+
+				end
+				
+				copyAddress = copyAddress + getInstructionSize(copyAddress)
+			end
+			
+			
+			-- Sort by amplitude
+			for i=1,#tableArrow do
+				for j=1,#tableArrow-i-1 do
+					if (tableArrow[j][4] &gt; tableArrow[j + 1][4]) then
+						local tempItem = tableArrow[j]
+						tableArrow[j] = tableArrow[j + 1]
+						tableArrow[j + 1] = tempItem
+					end
+				end
+			end
+			
+			
+			-- Получить дистанцию смещения областей стрелок от края маркеров функции
+			local countRowActive2 = 0
+			for i=1,#tableArrow do
+			
+				local fromAddress = tableArrow[i][1]
+				local toAddress = tableArrow[i][2]
+				
+				if(toAddress &gt;= topAddress1000 and toAddress &lt;= bottomAddress2) then
+					countRowActive2 = countRowActive2 + 1
+				end
+			end
+			
+			local distance = 10
+			local dxAmplitude = distance + countRowActive2 * 2
+			
+
+			-- Рисование инструкций
+			for i=1, #tableAddressCounter do
+				local copyAddress = tableAddressCounter[i][1]
+				local y = tableAddressCounter[i][2]
+				local isBranchType = tableAddressCounter[i][3]
+				local address = tableAddressCounter[i][4]
+				local opcode = tableAddressCounter[i][5]
+				local comment = tableAddressCounter[i][6]
+				
+				
+				-- Ветвление -- call rets jmps
+				if(	isBranchType) then
+					priority1 = obj.trackBar4.Position 
+				-- Чтение/запись готового резултата
+				elseif (string.match(opcode,'mov')) 	then 	priority1 = obj.trackBar3.Position
+				elseif (string.match(opcode,'lea')) 	then	priority1 = obj.trackBar3.Position
+				elseif (string.match(opcode,'fld')) 	then	priority1 = obj.trackBar3.Position
+				elseif (string.match(opcode,'fild')) 	then	priority1 = obj.trackBar3.Position
+				elseif (string.match(opcode,'fist')) 	then	priority1 = obj.trackBar3.Position
+				elseif (string.match(opcode,'fistp')) 	then	priority1 = obj.trackBar3.Position
+				elseif (string.match(opcode,'fst')) 	then	priority1 = obj.trackBar3.Position
+				elseif (string.match(opcode,'fstp')) 	then	priority1 = obj.trackBar3.Position
+				elseif (string.match(opcode,'movss')) 	then	priority1 = obj.trackBar3.Position
+				-- Арифметика
+				elseif (string.match(opcode,'adc'))		then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'add'))		then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'inc'))		then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'sub'))		then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'dec'))		then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'div'))		then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'imul'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'mul'))		then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'idiv'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'sbb'))		then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'fidivr'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'fmul'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'fadd'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'f2xm1'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'fabs'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'faddp'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'fbld'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'fbstp'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'fchs'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'fcom'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'fcomp'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'fcos'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'fdiv'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'fdivp'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'fdivr'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'fdivrp'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'fiadd'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'ficom'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'ficomp'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'fidiv'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'fimul'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'fisub'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'fisubr'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'fmulp'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'fsqrt'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'fscale'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'fprem'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'frndint'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'fxtract'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'fsub'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'fsubp'))	then	priority1 = obj.trackBar1.Position
+				elseif (string.match(opcode,'fsubr'))	then	priority1 = obj.trackBar1.Position
+				-- логика
+				elseif (string.match(opcode,'cmp')) 	then	priority1 = obj.trackBar2.Position
+				elseif (string.match(opcode,'comiss'))	then	priority1 = obj.trackBar2.Position
+				elseif (string.match(opcode,'test')) 	then	priority1 = obj.trackBar2.Position
+				elseif (string.match(opcode,'and')) 	then	priority1 = obj.trackBar2.Position
+				elseif (string.match(opcode,'neg'))		then	priority1 = obj.trackBar2.Position
+				elseif (string.match(opcode,'not'))		then	priority1 = obj.trackBar2.Position
+				elseif (string.match(opcode,'or '))		then	priority1 = obj.trackBar2.Position
+				elseif (string.match(opcode,'xor'))		then	priority1 = obj.trackBar2.Position
+				else
+					priority1 = obj.trackBar5.Position
+				end
+				
+
+			
+				if(obj.managerFunction.isRunningPlugin) then
+					-- Вывод маркера
+					obj.managerFunction.managerColorPath:LineRender(copyAddress, obj.column2_X, y*obj.dy, bufferGraphicCanvas)
+				end
+				
+				-- Вывод маркера TRACE LOG
+				obj.managerTracelogWindows.managerColorPath:LineRender(copyAddress, obj.column0_X, y*obj.dy, bufferGraphicCanvas)
+
+				-- Выделенный адрес
+				if(copyAddress == obj.selectedAddress) then
+					-- Связан с расстоянием между инстуркциями		
+					
+					bufferGraphicCanvas.Pen.Style = 'psSolid'
+					--obj.bufferGraphic.Canvas.Pen.Style = 'psSolid'
+					
+					bufferGraphicCanvas.rect(0, y*obj.dy, 1200, y*obj.dy + obj.trackBar9.Position + 1)
+					--local lastStyle = bufferGraphicCanvas.Brush.Style
+					bufferGraphicCanvas.Brush.Style = 'bsClear'
+					bufferGraphicCanvas.textOut(10, y*obj.dy, '>')
+					--bufferGraphicCanvas.Brush.Style = lastStyle
+				end	
+				
+				local someColor = byteTableToDword({priority1,priority1,priority1,0})
+				bufferGraphicCanvas.Font.Color = someColor
+				bufferGraphicCanvas.textOut(obj.column1_X, y*obj.dy, address)
+				
+				-- Вывод инструкции и комментария
+				bufferGraphicCanvas.textOut(obj.column3_X + dxAmplitude + addXFontSize, y*obj.dy, opcode..'       '..comment..getComment(copyAddress))
+
+				-- Новые функции
+				bufferGraphicCanvas.Font.Color 	= obj.colorFont
+			end
+			
+	
+			
+			-- Рисование стрелок
+			
+			local arrowBrightness= obj.trackBar6.Position
+			
+			-- Видимый прыжок
+			local colorArrowVisible = byteTableToDword({arrowBrightness, arrowBrightness, arrowBrightness,0})
+			
+			-- Прыжок в не области
+			local tempColor  = arrowBrightness - 100
+			if(tempColor &lt; 0) then tempColor = 0 end
+			local colorArrowLongFar = byteTableToDword({256, tempColor, tempColor,0})
+			
+			-- В области находится начало прыжка или цель прыжка
+			tempColor  = arrowBrightness - 50
+			if(tempColor &lt; 0) then tempColor = 0 end
+			local colorArrowFar = byteTableToDword({tempColor, 256, tempColor,0})
+			
+			--obj.mainCanvas.Font.Color 				= arrowBrightness -- obj.colorFont - priority1
+			bufferGraphicCanvas.Font.Color = arrowBrightness -- obj.colorFont - priority1
+				
+			local point1 = {x = 50, y = 10}
+			local point2 = {x = 50, y = 200}
+			
+			local dyN = sizeFont
+			
+			
+			
+			local countRowActive = 0
+			local rowDistance = obj.trackBar12.Position
+			for i=1,#tableArrow do
+			
+				local fromAddress = tableArrow[i][1]
+				local toAddress = tableArrow[i][2]
+				--obj.topAddress
+					
+					point1.y = tableArrow[i][3] * obj.dy + dyN
+					point1.x = obj.column3_X - 5 + dxAmplitude + addXFontSize
+					point2.x = obj.column3_X - 5 + dxAmplitude + addXFontSize
+					
+					local y2 = -1
+					for j=1,#tableAddressCounter do
+						if(tableAddressCounter[j][1] == toAddress) then
+							y2 = tableAddressCounter[j][2]
+						end
+					end
+					
+					local  a1_IsFarTop 		= fromAddress &lt; obj.topAddress 
+					local  a1_IsFarBottom	= fromAddress &gt; bottomAddress
+					local  a2_IsFarTop		= toAddress &lt; obj.topAddress 
+					local  a2_IsFarBottom	= toAddress &gt; bottomAddress
+					
+					if(y2 == -1) then
+						if(a2_IsFarTop) then
+							y2 = -10000
+						elseif (a2_IsFarBottom) then
+							y2 = 10000
+						end
+					end
+					
+					if(fromAddress &gt; toAddress) then
+						point2.y = tonumber(y2 * obj.dy) + dyN
+					else
+						point2.y = tonumber(y2 * obj.dy) + dyN
+					end
+
+					--bottomAddress
+					--obj.topAddress
+					--fromAddress
+					--toAddress
+					
+					
+
+					
+	
+					if ( (fromAddress &lt; obj.topAddress and toAddress &gt; bottomAddress) or
+						 (toAddress &lt; obj.topAddress and fromAddress &gt; bottomAddress) 
+					) then
+						--print('FarLong')
+						obj:DrawArrow(point1, point2, distance + countRowActive * rowDistance, colorArrowLongFar, obj.dy, a1_IsFarTop, a1_IsFarBottom, a2_IsFarTop, a2_IsFarBottom)
+					elseif ( ((fromAddress &lt; obj.topAddress or fromAddress &gt; bottomAddress) and (toAddress &lt;= bottomAddress and toAddress &gt;= obj.topAddress)) 
+							or
+							 ((toAddress &lt; obj.topAddress or toAddress &gt; bottomAddress) and (fromAddress &lt;= bottomAddress and fromAddress &gt;= obj.topAddress))
+					) then
+						--print('Far')
+						obj:DrawArrow(point1, point2, distance + countRowActive * rowDistance, colorArrowFar, obj.dy, a1_IsFarTop, a1_IsFarBottom, a2_IsFarTop, a2_IsFarBottom)
+					else
+						obj:DrawArrow(point1, point2, distance + countRowActive * rowDistance, colorArrowVisible, obj.dy, a1_IsFarTop, a1_IsFarBottom, a2_IsFarTop, a2_IsFarBottom)
+					end
+
+					countRowActive = countRowActive + 1
+					
+				--if(toAddress &gt;= topAddress1000 and toAddress &lt;= bottomAddress) then
+				--end
+			end
+			
+
+			obj.mainCanvas.draw(0, 0, obj.bufferGraphic)
+		end	
+		
+
+		function obj:DrawArrow(point1, point2, distance, colorArrow, minY, a1_IsFarTop, a1_IsFarBottom, a2_IsFarTop, a2_IsFarBottom, a1_IsFarTop, a1_IsFarBottom, a2_IsFarTop, a2_IsFarBottom)
+
+			local bufferCanvas = obj.bufferGraphic.Canvas
+			
+			bufferCanvas.Pen.Color = colorArrow
+			bufferCanvas.Pen.Style = 'psDot'	
+			
+			local height = bufferCanvas.Height
+			
+			isDrawSideLine1 = true
+			if(point1.y &lt; minY) 			then	point1.y = minY  isDrawSideLine1 = false
+			elseif (point1.y &gt; height) 	then	point1.y = height isDrawSideLine1 = false
+			end
+			
+			isDrawRow = true
+			if(point2.y &lt; minY) 			then	point2.y = minY	  isDrawRow = false
+			elseif (point2.y &gt; height) 	then	point2.y = height isDrawRow = false
+			end
+			
+			if(isDrawSideLine1) then
+				bufferCanvas.line(point1.x, point1.y, point2.x - distance, point1.y)
+			end
+			bufferCanvas.line(point2.x - distance, point1.y, point2.x - distance, point2.y)
+			
+
+		
+			if(isDrawRow) then
+				bufferCanvas.line(point1.x, point2.y, point2.x - distance, point2.y)
+				obj.bufferGraphic.Canvas.Pen.Style = 'psSolid' --'psSolid'
+				local x1 = point2.x - 5
+				local x2 = point2.x 
+				local y2 = point2.y
+				
+				-- Рисование стрелки костыльным способом
+				bufferCanvas.line(x1,		y2 - 3,			x2,		y2)
+				bufferCanvas.line(x1,		y2 - 7 + 10,	x2,		y2)
+				bufferCanvas.line(x1,		y2 - 3,			x1,		y2 - 7 + 10)
+				bufferCanvas.line(x1 + 1,	y2 - 2,			x1 + 1, y2 - 7 + 9)
+				bufferCanvas.line(x1 + 2,	y2 - 1,			x1 + 2, y2 - 7 + 9)
+				bufferCanvas.line(x1,		y2 - 1,			x1 + 6, y2)
+			end
+
+		end
+		
+		function obj:OnBreakpoint()
+			if(obj.managerFunction.isRunningPlugin and not obj.managerFunction.isPauseMarkerPlugin) then
+				return obj.managerFunction:OnBreakpoint()
+			end
+			-- 1 - don't tell me
+			return 0
+		end
+			
+
+		obj.frmDissassembler.OnMouseDown = function (sender, button, x, y) 
+			-- Найти адрес по высоте и ширине окна
+			obj.selectedAddress = obj.topAddress
+			-- Всего адресов по вертикали
+			local max = tonumber(obj.mainCanvas.Height / obj.dy)
+			local countAddress = max - tonumber((obj.mainCanvas.Height  - y)/obj.dy) - 1
+			
+			for i=1,countAddress do
+				obj.selectedAddress = obj.selectedAddress + getInstructionSize(obj.selectedAddress)
+			end
+			obj:GoToAddress(obj.selectedAddress, false, false, false)
+		end
+		
+		obj.frmDissassembler.OnDblClick = function (sender) 
+			obj:GoToAddress(obj.selectedAddress, true, false, true)
+		end
+		
+		
+		function obj:SaveParameters()
+
+			classSettings:Set('trackBar1', obj.trackBar1.Position)	-- арифметика
+			classSettings:Set('trackBar2', obj.trackBar2.Position)	-- логика
+			classSettings:Set('trackBar3', obj.trackBar3.Position)	-- запись/чтение
+			classSettings:Set('trackBar4', obj.trackBar4.Position) -- ветвление
+			classSettings:Set('trackBar5', obj.trackBar5.Position)	-- остальные
+			classSettings:Set('trackBar6', obj.trackBar6.Position)	-- стрелки
+			classSettings:Set('trackBar7', obj.trackBar7.Position)  -- фон
+			classSettings:Set('trackBar8', obj.trackBar8.Position)  -- фон
+			classSettings:Set('trackBar9', obj.trackBar9.Position)  -- фон
+			classSettings:Set('trackBar10', obj.trackBar10.Position)  -- фон
+			classSettings:Set('trackBar11', obj.trackBar11.Position)  -- фон
+			classSettings:Set('trackBar12', obj.trackBar12.Position)  -- расстояние между стрелками
+			
+			classSettings:Set('obj.frmDissassembler.Width', obj.frmDissassembler.Width)
+			classSettings:Set('obj.frmDissassembler.Height', obj.frmDissassembler.Height)
+			classSettings:Set('obj.frmDissassembler.Left', obj.frmDissassembler.Left)
+			classSettings:Set('obj.frmDissassembler.Top', obj.frmDissassembler.Top)
+			
+			classSettings:Set('obj.colorBackground', obj.colorBackground)
+			
+			if(obj.frmDissassembler.Visible) then
+				classSettings:Set('obj.frmDissassembler.Visible', '1')
+			end
+			
+			classSettings:Set('obj.selectedAddress', getNameFromAddress(obj.selectedAddress))
+			classSettings:Set('obj.topAddress', getNameFromAddress(obj.topAddress))
+	
+			local currentFont = obj.bufferGraphic.Canvas.Font
+			classSettings:Set('fontSize', currentFont.Size)
+			classSettings:Set('fontColor', currentFont.Color)
+			classSettings:Set('fontName', currentFont.Name) -- 'Comic Sans MS'
+	
+			classSettings:Save()
+		end
+		
+		
+		function obj:TrackbarRepaint()
+			--obj.trackBar1.update()
+			--obj.trackBar1.Color = obj.colorBackground
+			--obj.trackBar1.repaint()
+			--obj.trackBar2.repaint()
+			--obj.trackBar3.repaint()
+			--obj.trackBar4.repaint()
+			--obj.trackBar5.repaint()
+			--obj.trackBar6.repaint()
+			--obj.trackBar7.repaint()
+		end		
+		
+		-- Тестовая кнопка
+		--local btn = createButton(obj.frmDissassembler)
+		--btn.OnClick = function (sender)
+		--	obj:SaveParameters()
+		--end
+		
+		obj.frmDissassembler.OnDestroy = function (sender)
+			obj:SaveParameters()
+		end
+		
+		-- Ползунки приоритетов
+		obj.trackBar1 = createTrackBar(obj.frmDissassembler)
+		obj.trackBar1.Anchors = '[akTop,akRight]'
+		setProperty(obj.trackBar1, 'ShowSelRange', false)
+		setProperty(obj.trackBar1, 'Reversed', true)
+		setProperty(obj.trackBar1, 'TickStyle', 2)
+		obj.trackBar1.Min = 0
+		obj.trackBar1.Max = 255
+		obj.trackBar1.Top = 10
+		obj.trackBar1.Left = obj.frmDissassembler.Width - obj.trackBar1.Width
+		obj.trackBar1.OnChange = function ()
+			obj.managerFunction.needUpdateDraw = true
+		end
+		
+		obj.trackBar2 = createTrackBar(obj.frmDissassembler)
+		obj.trackBar2.Anchors = '[akTop,akRight]'
+		setProperty(obj.trackBar2, 'ShowSelRange', false)
+		setProperty(obj.trackBar2, 'Reversed', true)
+		setProperty(obj.trackBar2, 'TickStyle', 2)
+		obj.trackBar2.Min = 0
+		obj.trackBar2.Max = 255
+		obj.trackBar2.Top = 40
+		obj.trackBar2.Left = obj.trackBar1.Left 
+		obj.trackBar2.OnChange = function () 
+			obj.managerFunction.needUpdateDraw = true
+		end
+	
+		obj.trackBar3 = createTrackBar(obj.frmDissassembler)
+		obj.trackBar3.Anchors = '[akTop,akRight]'
+		setProperty(obj.trackBar3, 'ShowSelRange', false)
+		setProperty(obj.trackBar3, 'Reversed', true)
+		setProperty(obj.trackBar3, 'TickStyle', 2)
+		obj.trackBar3.Min = 0
+		obj.trackBar3.Max = 255
+		obj.trackBar3.Top = 70
+		obj.trackBar3.Left = obj.trackBar1.Left 
+		obj.trackBar3.OnChange = function () 
+			obj.managerFunction.needUpdateDraw = true
+		end	
+	
+		
+		obj.trackBar4 = createTrackBar(obj.frmDissassembler)
+		obj.trackBar4.Anchors = '[akTop,akRight]'
+		setProperty(obj.trackBar4, 'ShowSelRange', false)
+		setProperty(obj.trackBar4, 'Reversed', true)
+		setProperty(obj.trackBar4, 'TickStyle', 2)
+		obj.trackBar4.Min = 0
+		obj.trackBar4.Max = 255
+		obj.trackBar4.Top = 100
+		obj.trackBar4.Left = obj.trackBar1.Left 
+		obj.trackBar4.OnChange = function () 
+			obj.managerFunction.needUpdateDraw = true
+		end	
+		
+		
+		obj.trackBar5 = createTrackBar(obj.frmDissassembler)
+		obj.trackBar5.Anchors = '[akTop,akRight]'
+		setProperty(obj.trackBar5, 'ShowSelRange', false)
+		setProperty(obj.trackBar5, 'Reversed', true)
+		setProperty(obj.trackBar5, 'TickStyle', 2)
+		obj.trackBar5.Min = 0
+		obj.trackBar5.Max = 255
+		obj.trackBar5.Top = 130
+		obj.trackBar5.Left = obj.trackBar1.Left 
+		obj.trackBar5.OnChange = function () 
+			obj.managerFunction.needUpdateDraw = true
+		end	
+		
+		
+		obj.trackBar6 = createTrackBar(obj.frmDissassembler)
+		obj.trackBar6.Anchors = '[akTop,akRight]'
+		setProperty(obj.trackBar6, 'ShowSelRange', false)
+		setProperty(obj.trackBar6, 'Reversed', true)
+		setProperty(obj.trackBar6, 'TickStyle', 2)
+		obj.trackBar6.Min = 0
+		obj.trackBar6.Max = 255
+		obj.trackBar6.Top = 160
+		obj.trackBar6.Left = obj.trackBar1.Left 
+		obj.trackBar6.OnChange = function () 
+			obj.managerFunction.needUpdateDraw = true
+		end	
+		
+		
+		
+		obj.trackBar7 = createTrackBar(obj.frmDissassembler)
+		obj.trackBar7.Anchors = '[akTop,akRight]'
+		setProperty(obj.trackBar7, 'ShowSelRange', false)
+		setProperty(obj.trackBar7, 'Reversed', false)
+		setProperty(obj.trackBar7, 'TickStyle', 2)
+		obj.trackBar7.Min = 0
+		obj.trackBar7.Max = 255
+		obj.trackBar7.Top = 190
+		obj.trackBar7.Left = obj.trackBar1.Left 
+		obj.trackBar7.OnChange = function () 
+			local piceColorBackground = obj.trackBar7.Position
+			local tableColor = {piceColorBackground,piceColorBackground,piceColorBackground,0}
+			local someColor = byteTableToDword(tableColor)
+			obj.colorBackground = someColor
+			obj.managerFunction.needUpdateDraw = true
+		end	
+		
+		
+		obj.trackBar8 = createTrackBar(obj.frmDissassembler)
+		obj.trackBar8.Anchors = '[akTop,akRight]'
+		setProperty(obj.trackBar8, 'ShowSelRange', false)
+		setProperty(obj.trackBar8, 'Reversed', false)
+		setProperty(obj.trackBar8, 'TickStyle', 2)
+		obj.trackBar8.Min = 0
+		obj.trackBar8.Max = 1000
+		obj.trackBar8.Top = 220
+		obj.trackBar8.Left = obj.trackBar1.Left 
+		obj.trackBar8.OnChange = function (sender) 
+			obj.managerFunction.needUpdateDraw = true
+		end	
+		
+		obj.trackBar9 = createTrackBar(obj.frmDissassembler)
+		obj.trackBar9.Anchors = '[akTop,akRight]'
+		setProperty(obj.trackBar9, 'ShowSelRange', false)
+		setProperty(obj.trackBar9, 'Reversed', false)
+		setProperty(obj.trackBar9, 'TickStyle', 2)
+		obj.trackBar9.Min = 1
+		obj.trackBar9.Max = 50
+		obj.trackBar9.Top = 250
+		obj.trackBar9.Left = obj.trackBar1.Left 
+		obj.trackBar9.OnChange = function (sender) 
+			obj.managerFunction.needUpdateDraw = true
+		end	
+		
+	
+		obj.trackBar10 = createTrackBar(obj.frmDissassembler)
+		obj.trackBar10.Anchors = '[akTop,akRight]'
+		setProperty(obj.trackBar10, 'ShowSelRange', false)
+		setProperty(obj.trackBar10, 'Reversed', false)
+		setProperty(obj.trackBar10, 'TickStyle', 2)
+		obj.trackBar10.Min = 1
+		obj.trackBar10.Max = 50
+		obj.trackBar10.Top = 280
+		obj.trackBar10.Left = obj.trackBar1.Left 
+		obj.trackBar10.OnChange = function (sender) 
+			obj.managerFunction.needUpdateDraw = true
+		end	
+		
+		obj.trackBar11 = createTrackBar(obj.frmDissassembler)
+		obj.trackBar11.Anchors = '[akTop,akRight]'
+		setProperty(obj.trackBar11, 'ShowSelRange', false)
+		setProperty(obj.trackBar11, 'Reversed', false)
+		setProperty(obj.trackBar11, 'TickStyle', 2)
+		obj.trackBar11.Min = 1
+		obj.trackBar11.Max = 400
+		obj.trackBar11.Top = 310
+		obj.trackBar11.Left = obj.trackBar1.Left 
+		obj.trackBar11.OnChange = function (sender) 
+			obj.managerFunction.needUpdateDraw = true
+		end	
+		
+		obj.trackBar12 = createTrackBar(obj.frmDissassembler)
+		obj.trackBar12.Anchors = '[akTop,akRight]'
+		setProperty(obj.trackBar12, 'ShowSelRange', false)
+		setProperty(obj.trackBar12, 'Reversed', false)
+		setProperty(obj.trackBar12, 'TickStyle', 2)
+		obj.trackBar12.Min = 2
+		obj.trackBar12.Max = 10
+		obj.trackBar12.Top = 340
+		obj.trackBar12.Left = obj.trackBar1.Left 
+		obj.trackBar12.OnChange = function (sender) 
+			obj.managerFunction.needUpdateDraw = true
+		end	
+		
+		
+		obj.trackBar1.Position = classSettings:GetDigital('trackBar1', 255)		-- арифметика
+		obj.trackBar2.Position = classSettings:GetDigital('trackBar2', 255)		-- логика
+		obj.trackBar3.Position = classSettings:GetDigital('trackBar3', 255)		-- запись/чтение
+		obj.trackBar4.Position = classSettings:GetDigital('trackBar4', 255) 	-- ветвление
+		obj.trackBar5.Position = classSettings:GetDigital('trackBar5', 255)		-- остальные
+		obj.trackBar6.Position = classSettings:GetDigital('trackBar6', 255)		-- остальные
+		obj.trackBar7.Position = classSettings:GetDigital('trackBar7', 255)		-- остальные
+		obj.trackBar8.Position = classSettings:GetDigital('trackBar8', 50)		-- остальные
+		obj.trackBar9.Position = classSettings:GetDigital('trackBar9', 50)		-- остальные
+		obj.trackBar10.Position = classSettings:GetDigital('trackBar10', 12)	-- размер шрифта
+		obj.trackBar11.Position = classSettings:GetDigital('trackBar11', 0)		-- смещение от стобца маркеров (нужно регулировать при увеличении шрифта)
+		obj.trackBar12.Position = classSettings:GetDigital('trackBar12', 5)		-- смещение от стобца маркеров (нужно регулировать при увеличении шрифта)
+				
+
+		obj.selectedAddress = getAddress(classSettings:Get('obj.selectedAddress', obj.selectedAddress))
+		obj.topAddress = getAddress(classSettings:Get('obj.topAddress', obj.topAddress))
+
+		
+		local menu = createMainMenu(obj.frmDissassembler)
+		local menuItemEdit = createMenuItem(menu)
+		menu.Items.add(menuItemEdit)
+		menuItemEdit.Caption = 'Edit'
+		local menuItemChangeFont = createMenuItem(menu)
+		menuItemEdit.add(menuItemChangeFont)
+		menuItemChangeFont.Caption = 'Font'
+		menuItemChangeFont.OnClick = function ()
+			local fontDialog = FindComponentByClassName('TFontDialog')
+			if(fontDialog == nil) then
+				showMessage("fontDialog is nil")
+				return
+			end
+
+			if fontDialog.Execute() then
+				obj.bufferGraphic.Canvas.Font.assign(getSettingsForm().FontDialog1.Font)
+				obj.needUpdateDraw = true
+				obj.managerFunction.needUpdateDraw = true
+			end
+			--memory view-view-text pref:
+			-- disassembler (): MS Sans Serif 8
+			-- hexview: Courier 10
+
+			--AA window or Lua window-view-pref
+			-- AA and Lua: Courier New 10
+		end
+		
+		-- Загрузка данных о шрифте
+		local currentFont = obj.bufferGraphic.Canvas.Font
+		local fontSize = classSettings:GetDigital('fontSize', currentFont.Size)
+		local fontColor = classSettings:GetDigital('fontColor', currentFont.Color)
+		local fontName = classSettings:Get('fontName', currentFont.Name) -- 'Comic Sans MS'
+		
+		currentFont.fontName = fontSize
+		currentFont.Size = fontSize
+		currentFont.fontColor = fontSize
+				
+		obj:Draw()
+		
+		setmetatable(obj, self)
+		return obj
+    end	
+	
+
+	-- Для отладки и быстрого запуска
+	if(getOpenedProcessID() == 0) then
+	  openProcess('xrEngine.exe')
+	  --openProcess('test.exe')
+	end
+
+	-- Создание пользовательского дизассемблера
+	costomDisassembler = ClassCostomDisassembler:New(frmMarkedBranches)
+	
+	
+	function debugger_onBreakpoint()
+		return costomDisassembler:OnBreakpoint()
+	end
+	
+	
+	
+
+	
+</LuaScript>
+</CheatTable>
